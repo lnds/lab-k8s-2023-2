@@ -42,4 +42,5 @@ spec:
               value: "5432"
           ports:
             - containerPort: 8000
+              name: http-movies-api
       restartPolicy: Always

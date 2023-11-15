@@ -6,11 +6,12 @@ metadata:
   labels:
     app: movies-api
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: movies-api
   ports:
-    - port: 8000
-      targetPort: 8000
-      protocol: TCP
+    - protocol: TCP
+      name: movies-api
+      port: 8000
+      targetPort: http-movies-api
       nodePort: 31000

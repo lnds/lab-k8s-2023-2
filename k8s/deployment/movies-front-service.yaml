@@ -6,11 +6,12 @@ metadata:
   labels:
     app: movies-front
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: movies-front
   ports:
-    - port: 8080
-      targetPort: 80
-      protocol: TCP
+    - protocol: TCP
+      name: movies-front
+      port: 80
+      targetPort: http-movies-front 
       nodePort: 32000

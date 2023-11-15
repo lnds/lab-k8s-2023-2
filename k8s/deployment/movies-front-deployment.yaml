@@ -18,4 +18,5 @@ spec:
           image: TU_USUARIO/movies-front:v1
           ports:
             - containerPort: 80
+              name: http-movies-front
       restartPolicy: Always
