@@ -180,19 +180,23 @@ Luego ejecuta:
 kubectl apply -f deployment
 ```
 
+Por ultimo nos falta habilitar INGRESS.
 
-Para probar debemos habilitar `INGRESS` del siguiente modo:
+## Paso 8
 
-```
-minikube addons enable ingress
-```
+Ahora vamos levantar la configuración de ingress del siguiente modo:
 
-Luego ejecuta:
+    kubectl apply -f networking
 
-```
-minikube tunnel
-```
+Revisa el archivo `ingress-config.yaml`.
 
-Con esto habilitas el tunnel para exponer los servicios a través de la dirección IP `127.0.0.1`.
+Para poder ver estos servicios en nuestra máquina debes levantar el servicio `tunnel`:
 
-Si todo sale bien deberías poder acceder a la aplicación en tu navegador en la dirección `http://localhost:8080`.
+    minikube tunnel
+
+Ahora puedes navegar a http://localhost/ y probar la aplicación.
+
+Si tienes problema, probablemente debes habiltar el addon ingress, esto se realiza del siguiente modo:
+
+    minikube addons enable ingress
+
