@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: movies-api-service
+  namespace: movies-app
+  labels:
+    app: movies-api
+spec:
+  type: LoadBalancer
+  selector:
+    app: movies-api
+  ports:
+    - port: 8000
+      targetPort: 8000
+      protocol: TCP
+      nodePort: 31000

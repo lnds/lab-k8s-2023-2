@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movies-api-deployment
+  namespace: movies-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: movies-api
+  template:
+    metadata:
+      labels:
+        app: movies-api
+    spec:
+      containers:
+        - name: movies-api
+          image: TU_USUARIO/movies-api:v1
+          args:
+            - "/movies-api"
+            - "-b"
+            - "0.0.0.0"
+            - "-p"
+            - "8000"
+          env:
+            - name: BIND_PORT
+              value: "8000"
+            - name: BIND_IP
+              value: "movies-api"
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: password
+            - name: POSTGRES_SERVER
+              value: postgres
+            - name: POSTGRES_DB
+              value: postgres
+            - name: POSTGRES_PORT
+              value: "5432"
+          ports:
+            - containerPort: 8000
+      restartPolicy: Always

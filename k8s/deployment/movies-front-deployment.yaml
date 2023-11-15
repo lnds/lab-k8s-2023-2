@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movies-front-deployment
+  namespace: movies-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: movies-front
+  template:
+    metadata:
+      labels:
+        app: movies-front
+    spec:
+      containers:
+        - name: movies-front
+          image: TU_USUARIO/movies-front:v1
+          ports:
+            - containerPort: 80
+      restartPolicy: Always
